@@ -15,6 +15,7 @@ octave/qt-settings
 pulse/
 qutebrowser/*
 !qutebrowser/config.py
+ranger/plugins/__init__.py
 unity3d/
 VirtualBox/
 wakatime/
