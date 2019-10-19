@@ -13,6 +13,8 @@ lxqt/
 NuGet/
 octave/qt-settings
 pulse/
+qutebrowser/*
+!qutebrowser/config.py
 unity3d/
 VirtualBox/
 wakatime/
