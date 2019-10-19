@@ -1,0 +1,45 @@
+#!/bin/bash
+set -e
+file="$XDG_CONFIG_HOME/anime-downloader/watch.json" 
+action="$(echo -e 'watch\nepisodes_done\nremove' | rofi -dmenu -no-custom -p anime)"
+
+getTitle() {
+    jq '.[] | "(\(.episodes_done)/\(._len)) \(.title)"' "$file" \
+        | sed 's/"\(.*\)"/\1/' \
+        | rofi -dmenu -no-custom -p "$action" \
+        | awk '{ print $2 }'
+}
+
+getLen() {
+    jq ".[] | select(.title == \"$1\")._len" "$file"
+}
+
+getEpisodesDone() {
+    jq ".[] | select(.title == \"$1\").episodes_done" "$file"
+}
+
+setEpisodesDone() {
+    local program="map(if .title == \"$1\" then .episodes_done = $2 else . end)"
+    local new
+    new="$(jq "$program" "$file")"
+    echo "$new" > "$file"
+}
+
+case "$action" in
+    watch)
+        title="$(getTitle)"
+        anime watch "$title" &>/dev/null & disown 
+        ;;
+    episodes_done)
+        title="$(getTitle)"
+        episodesDone="$(getEpisodesDone "$title")"
+        len="$(getLen "$title")"
+        n="$(seq 0 "$len" | rofi -dmenu -no-custom -select "$episodesDone" -p "$action")"
+        setEpisodesDone "$title" "$n"
+        ;;
+    remove)
+        title="$(getTitle)"
+        newData="$(jq "map(select(.title != \"$title\"))" "$file")"
+        echo "$newData" > "$file"
+        ;;
+esac
