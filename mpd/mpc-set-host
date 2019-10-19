@@ -1,0 +1,16 @@
+#!/bin/bash
+hosts="$XDG_CONFIG_HOME/mpd/hosts"
+if [[ ! -r "$hosts" ]]; then
+    echo "Can't read $hosts." >&2
+    exit 1
+fi
+
+hostPath="$XDG_DATA_HOME/mpd/host"
+if [[ -r "$hostPath" ]]; then
+    host="$(cat "$hostPath")"
+fi
+
+newHost="$(rofi -dmenu -input "$hosts" -select "$host" -p 'MPD Host')"
+if [[ -n "$newHost" ]]; then
+    echo "$newHost" > "$hostPath"
+fi

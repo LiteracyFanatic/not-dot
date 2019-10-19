@@ -1,0 +1,7 @@
+#!/bin/bash
+host="$(cat "$XDG_DATA_HOME/mpd/host")"
+if [[ -n "$host" ]]; then
+    /bin/mpc --host "$host" "$@"
+else
+    /bin/mpc "$@"
+fi
