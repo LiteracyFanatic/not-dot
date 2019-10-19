@@ -1,0 +1,8 @@
+systemctl --user import-environment DISPLAY XAUTHORITY
+xrandr --output eDP1 --scale 0.5x0.5
+wal -R
+
+setxkbmap -option caps:none
+numlockx on && xmodmap -e 'keycode 77 = NoSymbol Num_Lock'
+
+exec i3
