@@ -1,0 +1,20 @@
+#!/bin/bash
+config="$XDG_CONFIG_HOME/xfce4/terminal/terminalrc"
+
+foreground="$(jq --raw-output '.special.foreground' "$XDG_CACHE_HOME/wal/colors.json")"
+background="$(jq --raw-output '.special.background' "$XDG_CACHE_HOME/wal/colors.json")"
+cursor="$(jq --raw-output '.special.cursor' "$XDG_CACHE_HOME/wal/colors.json")"
+colors="$(tr '\n' ';' < "$XDG_CACHE_HOME/wal/colors")"
+
+sed -i "/^$/d" "$config"
+sed -i "/ColorForeground/d" "$config"
+sed -i "/ColorBackground/d" "$config"
+sed -i "/ColorCursor/d" "$config"
+sed -i "/ColorPalette/d" "$config"
+
+{
+    echo "ColorForeground=$foreground"
+    echo "ColorBackground=$background"
+    echo "ColorCursor=$cursor"
+    echo "ColorPalette=$colors"
+} >> "$config"

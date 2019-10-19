@@ -1,0 +1,4 @@
+#!/bin/bash
+fifo="$XDG_RUNTIME_DIR/glava.fifo"
+foreground="$(jq --raw-output '.colors.color1' "$XDG_CACHE_HOME/wal/colors.json")"
+echo "$foreground" >> "$fifo"
