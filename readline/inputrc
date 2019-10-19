@@ -14,10 +14,3 @@ set completion-ignore-case On
 set mark-symlinked-directories On
 set show-all-if-unmodified On
 set visible-stats On
-
-# Fix delete key and arrow key history search in st
-$if term=st
-#set enable-keypad On
-"\C-[OA": history-search-backward
-"\C-[OB": history-search-forward
-$endif
