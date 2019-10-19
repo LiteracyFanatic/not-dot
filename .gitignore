@@ -16,6 +16,9 @@ pulse/
 qutebrowser/*
 !qutebrowser/config.py
 ranger/plugins/__init__.py
+ssh/*
+!ssh/ssh
+!ssh/*.pub
 unity3d/
 VirtualBox/
 wakatime/
