@@ -1,0 +1,19 @@
+#!/bin/bash
+resolution="$(xdpyinfo | awk '/dimensions/ { print $2 }')"
+W="${resolution%x*}"
+H="${resolution#*x}"
+w="$(bc <<< "$W * 0.4")"
+h="$(bc <<< "$H * 0.4")"
+
+i3Config="$XDG_CONFIG_HOME/i3/config"
+gap="$(awk '/^gaps inner/ { print $3 }' "$i3Config")"
+border="$(awk '/^default_border pixel/ { print $3 }' "$i3Config")"
+margin="$((gap + border))"
+
+x="$(bc <<< "$W - $w - 2 * $margin")"
+y="$(bc <<< "$H - $h - 2 * $margin")"
+
+i3-msg -q '[class="mpv"] fullscreen disable; floating enable; sticky enable'
+id="$(xdotool search --sync --class mpv)"
+xdotool windowmove --sync "$id" "$x" "$y"
+xdotool windowsize --sync "$id" "$w" "$h"
