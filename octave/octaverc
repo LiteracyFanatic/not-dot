@@ -1,0 +1,15 @@
+source /usr/share/octave/site/m/startup/octaverc;
+pkg prefix ~/.local/share/octave/packages;
+pkg local_list ~/.local/share/octave/octave_packages;
+
+set(0, "defaulttextfontsize", 24)
+set(0, "defaultaxesfontsize", 16)
+
+set(0, 'defaultfiguremenubar', 'none')
+set(0, 'defaultfiguretoolbar', 'figure')
+set(0, 'defaultfigurewindowstyle', 'normal')
+
+set(0, 'defaultaxesxgrid', 'on')
+set(0, 'defaultaxesygrid', 'on')
+
+set(0, "defaultlinelinewidth", 2)
