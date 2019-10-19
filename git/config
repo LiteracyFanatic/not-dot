@@ -1,0 +1,7 @@
+[user]
+	email = LiteracyFanatic@gmail.com
+	name = Jordan Cannon
+[rerere]
+	enabled = true
+[status]
+	showUntrackedFiles = all
