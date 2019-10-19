@@ -1,0 +1,33 @@
+{
+    "layout": "splith",
+    "nodes": [
+        {
+            "percent": 0.6,
+            "swallows": [
+                {
+                    "title": "^terminal$"
+                }
+            ]
+        },
+        {
+            "layout": "splitv",
+            "percent": 0.4,
+            "nodes": [
+                {
+                    "swallows": [
+                        {
+                            "title": "^terminal$"
+                        }
+                    ]
+                },
+                {
+                    "swallows": [
+                        {
+                            "title": "^terminal$"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

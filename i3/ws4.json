@@ -1,0 +1,55 @@
+{
+    "layout": "splitv",
+    "nodes": [
+        {
+            "name": "GLava",
+            "percent": 0.3,
+            "swallows": [
+                {
+                    "class": "^GLava$"
+                }
+            ]
+        },
+        {
+            "percent": 0.7,
+            "nodes": [
+                {
+                    "layout": "splitv",
+                    "percent": 0.5,
+                    "nodes": [
+                        {
+                            "percent": 0.5,
+                            "swallows": [
+                                {
+                                    "title": "^ncmpcpp$"
+                                }
+                            ]
+                        },
+                        {
+                            "percent": 0.5,
+                            "swallows": [
+                                {
+                                    "title": "^tty-clock$"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "layout": "splitv",
+                    "percent": 0.5,
+                    "nodes": [
+                        {
+                            "percent": 1,
+                            "swallows": [
+                                {
+                                    "title": "^htop$"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

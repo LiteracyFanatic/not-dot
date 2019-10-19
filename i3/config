@@ -1,0 +1,130 @@
+set $mod Mod4
+
+floating_modifier $mod
+
+bindsym $mod+Return exec xfce4-terminal
+
+bindsym $mod+Shift+q kill
+
+bindsym $mod+Shift+x move scratchpad
+bindsym $mod+Shift+s scratchpad show
+bindsym $mod+x exec quake-terminal
+for_window [title="^quake-terminal$"] floating enable, move position 15 40, resize set 1890 px 50 ppt
+
+bindsym Print exec maim --hidecursor "$HOME/pictures/screenshots/$(date +%s).png";
+bindsym $mod+Print exec maim --hidecursor --select "$HOME/pictures/screenshots/$(date +%s).png"
+
+bindsym $mod+r exec "rofi -combi-modi drun,run -show combi -modi combi -show-icons -drun-show-actions"
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+bindsym $mod+backslash split h
+bindsym $mod+Shift+bar split v
+
+bindsym $mod+f fullscreen toggle
+
+bindsym $mod+t layout tabbed
+bindsym $mod+w layout toggle split
+
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+
+bindsym $mod+a focus parent
+bindsym $mod+Shift+a focus child
+
+set $ws1 "1: web"
+set $ws2 "2: terminal"
+set $ws3 "3: code"
+set $ws4 "4: music"
+set $ws5 "5:"
+set $ws6 "6:"
+set $ws7 "7:"
+set $ws8 "8:"
+set $ws9 "9:"
+set $ws10 "10:"
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4; workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+bindsym $mod+minus resize shrink width 10 px or 10 ppt
+bindsym $mod+plus resize grow width 10 px or 10 ppt
+bindsym $mod+Shift+minus resize shrink height 10 px or 10 ppt
+bindsym $mod+Shift+plus resize grow height 10 px or 10 ppt
+
+bindsym $mod+Shift+v exec copyq toggle
+
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5
+bindsym XF86AudioMute exec amixer set Master toggle
+bindsym XF86AudioLowerVolume exec amixer set Master 5%-
+bindsym XF86AudioRaiseVolume exec amixer set Master 5%+
+bindsym XF86AudioPrev exec mpc prev
+bindsym XF86AudioPlay exec mpc toggle
+bindsym $mod+F10 exec mpc-set-host
+bindsym XF86AudioNext exec mpc next
+
+default_border pixel 5
+default_floating_border pixel 5
+
+gaps inner 10
+
+assign [class="^Steam$"] $ws5
+for_window [class="Slay the Spire"] floating disable, fullscreen enable, move to workspace $ws5
+for_window [class="CorpseParty.x86"] floating disable, fullscreen enable, move to workspace $ws5
+
+exec polybar -r main
+exec compton
+exec lxqt-policykit-agent
+exec copyq
+
+exec "$XDG_CONFIG_HOME/i3/layout"
+
+set_from_resource $fg i3wm.color7 #f0f0f0
+set_from_resource $bg i3wm.color2 #f0f0f0
+
+# class                 border  backgr. text    indicator child_border
+client.focused          $bg     $bg     $fg     $bg       $bg
+client.focused_inactive #333333 #222222 #888888 #111111   #000000
+client.unfocused        #333333 #222222 #888888 #111111   #000000
+client.urgent           #333333 #222222 #888888 #292d2e   #222222
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
