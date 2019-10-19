@@ -1,0 +1,184 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains alot of information
+;
+;==========================================================
+
+[colors]
+;background = #aa222222
+foreground = #dfdfdf
+foreground-alt = #888
+;primary = #ffb52a
+;secondary = #e60053
+;alert = #bd2c40
+
+background = ${xrdb:color0:#222}
+;foreground = ${xrdb:color7:#222}
+;foreground-alt = ${xrdb:color7:#222}
+primary = ${xrdb:color2:#222}
+secondary = ${xrdb:color2:#222}
+;alert = ${xrdb:color3:#222}
+
+[settings]
+pseudo-transparency = true
+
+[bar/main]
+radius = 6.0
+fixed-center = false
+
+separator = /
+
+enable-ipc = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+border-top-size = 5
+border-left-size = 10
+border-right-size = 10
+border-color = #00000000
+
+padding-left = 1
+padding-right = 3
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = ProFontIIx Nerd Font Mono:size=12;3
+
+modules-left = i3
+#modules-center = mpd
+modules-right = compton package-updates-trigger package-updates wireless-network wired-network xbacklight pulseaudio battery-status temperature date
+
+cursor-click = pointer
+
+[module/i3]
+type = internal/i3
+format = <label-state>
+index-sort = true
+
+; focused = Active workspace on focused monitor
+label-focused = %index% %icon%
+label-focused-foreground = ${colors.primary}
+label-focused-background = ${colors.background}
+label-focused-padding = 2
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = ${self.label-focused}
+label-unfocused-padding = ${self.label-focused-padding}
+
+; visible = Active workspace on unfocused monitor
+label-visible = ${self.label-focused}
+label-visible-background = ${self.label-focused-background}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = ${self.label-focused}
+label-urgent-padding = ${self.label-focused-padding}
+
+; Separator in between workspaces
+label-separator = /
+
+fuzzy-match = true
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;調
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+
+ws-icon-default = ""
+
+[module/mpd]
+type = internal/mpd
+label-song = %title%
+format-playing =  <label-song> (<label-time>) 
+format-paused = ${self.format-playing}
+
+[module/xbacklight]
+type = internal/xbacklight
+label = ﯦ %percentage%%
+
+[module/wireless-network]
+type = internal/network
+interface = wlo1
+interval = 3.0
+
+label-connected =  %essid%
+format-connected = <label-connected>
+
+;format-disconnected =
+label-disconnected =  %ifname% disconnected
+label-disconnected-foreground = ${colors.foreground-alt}
+format-disconnected = <label-disconnected>
+
+[module/wired-network]
+type = internal/network
+interface = enp0s3
+interval = 3.0
+
+;format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected =  %ifname%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/compton]
+type = custom/ipc
+hook-0 = "pidof compton && echo  || echo %{F#888}%{F-}"
+hook-1 = /home/jordan/.config/polybar/toggle-compton
+initial = 1
+click-left = "polybar-msg hook compton 2"
+
+[module/battery-status]
+type = custom/script
+exec = ~/.config/polybar/battery-status
+tail = true
+
+[module/package-updates]
+type = custom/ipc
+hook-0 = ~/.config/polybar/package-updates
+
+[module/package-updates-trigger]
+type = custom/script
+exec = polybar-msg hook package-updates 1 &>/dev/null
+interval = 600
+
+[module/date]
+type = internal/date
+interval = 5
+time = " %I:%M %p"
+date-alt = " %m/%d/%y"
+
+label = %date%%time%
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+label-volume = %percentage%%
+format-volume = <ramp-volume> <label-volume>
+
+label-muted = "婢 0%"
+label-muted-foreground = ${colors.foreground-alt}
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 

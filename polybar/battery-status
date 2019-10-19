@@ -1,0 +1,117 @@
+#!/bin/sh
+
+remaining_time() {
+    upower -i "$(upower --enumerate | grep BAT)" |
+    awk '
+        /time to .*:/ {
+            if ($5 == "minutes") {
+                printf "0:%02.f", $4;
+            }
+            else {
+                split($4, hours, ".")
+                printf "%d:%02.f", hours[1], ("0." hours[2]) * 60
+            }
+        }
+    '
+}
+
+battery_print() {
+    path_ac="/sys/class/power_supply/ADP1"
+    path_battery="/sys/class/power_supply/BAT0"
+
+    ac=0
+    battery_level=0
+    battery_max=0
+
+    if [ -f "$path_ac/online" ]; then
+        ac=$(cat "$path_ac/online")
+    fi
+
+    if [ -f "$path_battery/charge_now" ]; then
+        battery_level=$(cat "$path_battery/charge_now")
+    fi
+
+    if [ -f "$path_battery/charge_full" ]; then
+        battery_max=$(cat "$path_battery/charge_full")
+    fi
+
+    battery_percent=$(("$battery_level * 100 / $battery_max"))
+
+    if [ "$ac" -eq 1 ]; then
+        msg=" ( $(remaining_time))"
+        if [ "$battery_percent" -lt 20 ]; then
+            icon=""
+        elif [ "$battery_percent" -lt 30 ]; then
+            icon=""
+        elif [ "$battery_percent" -lt 40 ]; then
+            icon=""
+        elif [ "$battery_percent" -lt 60 ]; then
+            icon=""
+        elif [ "$battery_percent" -lt 80 ]; then
+            icon=""
+        elif [ "$battery_percent" -lt 90 ]; then
+            icon=""
+        else
+            icon=""
+            if [ "$battery_percent" -gt 97 ]; then
+                msg=""
+            fi
+        fi
+    else
+        if [ -n "$(remaining_time)" ]; then
+            msg=" ( $(remaining_time))"
+        fi
+        if [ "$battery_percent" -gt 97 ]; then
+            icon=""
+        elif [ "$battery_percent" -gt 90 ]; then
+            icon=""
+        elif [ "$battery_percent" -gt 80 ]; then
+            icon=""
+        elif [ "$battery_percent" -gt 70 ]; then
+            icon=""
+        elif [ "$battery_percent" -gt 60 ]; then
+            icon=""
+        elif [ "$battery_percent" -gt 50 ]; then
+            icon=""
+        elif [ "$battery_percent" -gt 40 ]; then
+            icon=""
+        elif [ "$battery_percent" -gt 30 ]; then
+            icon=""
+        elif [ "$battery_percent" -gt 20 ]; then
+            icon=""
+        elif [ "$battery_percent" -gt 10 ]; then
+            icon=""
+        else
+            icon=""
+        fi
+    fi
+
+    echo "$icon $battery_percent%$msg"
+}
+
+pid_dir="$XDG_RUNTIME_DIR/polybar"
+path_pid="$pid_dir/battery-combined-udev.pid"
+
+case "$1" in
+    --update)
+        pid="$(cat "$path_pid")"
+
+        if [ "$pid" != "" ]; then
+            kill -10 "$pid"
+        fi
+        ;;
+    *)
+        mkdir -p "$pid_dir"
+        echo $$ > "$path_pid"
+
+        trap exit INT
+        trap echo USR1
+
+        while true; do
+            battery_print
+
+            sleep 30 &
+            wait
+        done
+        ;;
+esac
