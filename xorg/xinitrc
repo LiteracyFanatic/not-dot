@@ -1,4 +1,4 @@
-systemctl --user import-environment DISPLAY XAUTHORITY
+systemctl --user import-environment DISPLAY XAUTHORITY XDG_DATA_HOME DOTNET_ROOT
 xrandr --output eDP1 --scale 0.5x0.5
 wal -R
 
