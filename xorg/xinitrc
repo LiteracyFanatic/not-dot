@@ -5,4 +5,7 @@ wal -R
 setxkbmap -option caps:none
 numlockx on && xmodmap -e 'keycode 77 = NoSymbol Num_Lock'
 
+# Enable zapping (C-A-<Bksp> kills X)
+setxkbmap -option terminate:ctrl_alt_bksp
+
 exec i3
