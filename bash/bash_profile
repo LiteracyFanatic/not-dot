@@ -6,5 +6,5 @@ XINITRC="$XDG_CONFIG_HOME/xorg/xinitrc"
 LOG="$XDG_DATA_HOME/xorg/xsession-errors"
 
 if [ "$(tty)" = "/dev/tty1" ]; then
-	startx "$XINITRC" -- -keeptty 2>>"$LOG"
+    startx "$XINITRC" -- -keeptty 2>>"$LOG"
 fi
