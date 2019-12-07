@@ -37,7 +37,7 @@ export SYSTEMD_LESS="$LESS"
 alias ls='ls -v --group-directories-first --classify --color=auto'
 alias la='ls --almost-all'
 alias ll='ls -lh --almost-all'
-alias grep='grep --ignore-case --color=auto --exclude-dir=.git'
+alias grep='grep --ignore-case --color=auto --exclude-dir=.git --binary-files=without-match'
 alias df='df -hT'
 alias du='du -h'
 alias suspend='systemctl suspend'
