@@ -11,6 +11,8 @@ jupyter/
 libreoffice/
 lxqt/
 mpv/watch_later/
+mssqlcli/*
+!mssqlcli/config
 NuGet/
 octave/qt-settings
 pulse/
