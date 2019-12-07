@@ -107,7 +107,7 @@ export WINEPREFIX="$XDG_DATA_HOME/wine"
 
 export ASPELL_CONF="per-conf $XDG_CONFIG_HOME/aspell/aspell.conf; personal $XDG_DATA_HOME/aspell/en.pws; repl $XDG_DATA_HOME/aspell/en.prepl"
 
-if command -v ranger &>/dev/null; then
+if hash ranger 2>/dev/null; then
     if [[ -r "$XDG_CONFIG_HOME/ranger/plugins/bash_automatic_cd.sh" ]]; then
         . "$XDG_CONFIG_HOME/ranger/plugins/bash_automatic_cd.sh"
     fi
