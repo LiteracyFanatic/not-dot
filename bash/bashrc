@@ -57,6 +57,10 @@ alarm() {
     schedule "$1" notify-send --urgency critical "$2"
 }
 
+dict() {
+    command dict "$@" | less
+}
+
 export HISTFILE="$XDG_DATA_HOME/bash/history"
 
 export LESSKEY="$XDG_CONFIG_HOME/less/lesskey"
