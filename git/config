@@ -3,3 +3,5 @@
 	name = Jordan Cannon
 [rerere]
 	enabled = true
+[push]
+	followTags = true
