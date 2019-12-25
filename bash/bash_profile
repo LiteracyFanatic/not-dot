@@ -6,5 +6,11 @@ XINITRC="$XDG_CONFIG_HOME/xorg/xinitrc"
 LOG="$XDG_DATA_HOME/xorg/xsession-errors"
 
 if [ "$(tty)" = "/dev/tty1" ]; then
+    export XDG_SESSION_TYPE=x11
+    export GDK_BACKEND=x11
     startx "$XINITRC" -- -keeptty 2>>"$LOG"
+elif [ "$(tty)" = "/dev/tty2" ]; then
+    export XDG_SESSION_TYPE=wayland
+    export GDK_BACKEND=wayland
+    sway
 fi
