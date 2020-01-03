@@ -35,6 +35,7 @@ export LESS=FRSMi
 export SYSTEMD_LESS="$LESS"
 export _JAVA_AWT_WM_NONREPARENTING=1
 export RIDER_JDK=/usr/lib/jvm/java-11-openjdk
+export GSETTINGS_BACKEND=keyfile
 
 alias ls='ls -v --group-directories-first --classify --color=auto'
 alias la='ls --almost-all'
