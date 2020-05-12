@@ -37,6 +37,9 @@ pseudo-transparency = true
 [bar/main]
 radius = 6.0
 fixed-center = false
+override-redirect = true
+wm-restack = i3
+height = 24
 
 separator = /
 
@@ -46,6 +49,7 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 
 border-top-size = 5
+border-bottom = 5
 border-left-size = 10
 border-right-size = 10
 border-color = #00000000

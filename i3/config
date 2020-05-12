@@ -6,10 +6,8 @@ bindsym $mod+Return exec xfce4-terminal
 
 bindsym $mod+Shift+q kill
 
-bindsym $mod+Shift+x move scratchpad
-bindsym $mod+Shift+s scratchpad show
-bindsym $mod+x exec quake-terminal
-for_window [title="^quake-terminal$"] floating enable, move position 15 40, resize set 1890 px 50 ppt
+exec quake-terminal --launch
+bindsym $mod+x exec quake-terminal --toggle
 
 bindsym Print exec maim --hidecursor "$HOME/pictures/screenshots/$(date +%s).png";
 bindsym $mod+Print exec maim --hidecursor --select "$HOME/pictures/screenshots/$(date +%s).png"
@@ -114,7 +112,7 @@ assign [class="^Steam$"] $ws5
 for_window [class="Slay the Spire"] floating disable, fullscreen enable, move to workspace $ws5
 for_window [class="CorpseParty.x86"] floating disable, fullscreen enable, move to workspace $ws5
 
-exec polybar -r main
+exec i3-polybar
 exec compton
 exec lxqt-policykit-agent
 exec copyq

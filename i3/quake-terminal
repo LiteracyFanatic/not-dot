@@ -1,22 +1,43 @@
 #!/bin/bash
-resolution="$(xdpyinfo | awk '/dimensions/ { print $2 }')"
-w="${resolution%x*}"
+launch() {
+    xfce4-terminal --title quake-terminal &
+    xdotool search --sync --name quake-terminal
+    i3-msg "[title=\"quake-terminal\"] move scratchpad"
+}
 
-polybarDimensions="$(xdotool search --class polybar getwindowgeometry \
-    | awk '/Geometry/ { print $2 }')"
-polybarHeight="${polybarDimensions#*x}"
+format() {
+    resolution="$(xdpyinfo | awk '/dimensions/ { print $2 }')"
+    w="${resolution%x*}"
 
-i3Config="$XDG_CONFIG_HOME/i3/config"
-gap="$(awk '/^gaps inner/ { print $3 }' "$i3Config")"
-border="$(awk '/^default_border pixel/ { print $3 }' "$i3Config")"
-margin="$((gap + border))"
+    if xdotool search --class polybar; then
+        xdotool search --class polybar getwindowgeometry
+        polybarDimensions="$(xdotool search --class polybar getwindowgeometry \
+            | awk '/Geometry/ { print $2 }')"
+        polybarHeight="${polybarDimensions#*x}"
+    fi
 
-if ! id="$(xdotool search --name ^quake-terminal$)"; then
-    xfce4-terminal --title quake-terminal -x bash & disown
-    id="$(xdotool search --sync --name ^quake-terminal$)"
-    i3-msg -q '[title="^quake-terminal$"] move scratchpad'
-fi
+    i3Config="$XDG_CONFIG_HOME/i3/config"
+    gap="$(awk '/^gaps inner/ { print $3 }' "$i3Config")"
 
-i3-msg -q '[title="^quake-terminal$"] scratchpad show'
-xdotool windowmove --sync "$id" "$margin" "$((polybarHeight + margin))"
-xdotool windowsize --sync "$id" "$((w - 2 * margin))" 50%
+    i3-msg "[title=\"quake-terminal\"]
+    move position $gap px ${polybarHeight:-$gap} px,
+    resize set $((w - 2 * gap)) px 50 ppt"
+}
+
+toggle() {
+    i3-msg "[title=\"quake-terminal\"] scratchpad show"
+}
+
+case "$1" in
+    --launch)
+        launch
+        format
+        ;;
+    --format)
+        format
+        ;;
+    --toggle)
+        toggle
+        format
+        ;;
+esac

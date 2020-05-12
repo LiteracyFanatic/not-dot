@@ -1,0 +1,19 @@
+#!/bin/bash
+cleanup() {
+    i3-msg 'gaps top all set 0'
+    eval 'kill $pid'
+    quake-terminal --format
+}
+trap cleanup TERM INT
+
+polybar -r main &>/dev/null &
+pid="$!"
+
+polybarHeight="$(polybar -d height main)"
+i3-msg "gaps top all set $polybarHeight"
+
+xdotool search --sync --pid "$pid"
+quake-terminal --format
+
+wait "$pid"
+cleanup
