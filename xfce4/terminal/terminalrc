@@ -39,4 +39,5 @@ ColorPalette=#332f4b;#9d7eff;#9fb3ff;#d49bff;#aac0ff;#a5fff5;#f6afff;#dedeee;#9b
 ShortcutsNoMenukey=TRUE
 ShortcutsNoMnemonics=TRUE
 ShortcutsNoHelpkey=TRUE
+ScrollingOnOutput=FALSE
 
