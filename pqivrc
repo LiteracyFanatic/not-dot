@@ -3,6 +3,10 @@ fullscreen=1
 sort=1
 hide-info-box=1
 end-of-files-action=wait
+thumbnail-size=256x256
+thumbnail-preload=30
+thumbnail-persistence=standard
+disable-backends=archive,archive_cbx,libav,poppler,spectre,wand
 
 [keybindings]
 <Mouse-1> { goto_file_relative(1); }
