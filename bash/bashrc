@@ -47,6 +47,7 @@ alias du='du -h'
 alias suspend='systemctl suspend'
 alias qmv='qmv --format destination-only'
 alias weather='curl http://wttr.in/'
+alias journalctl='journalctl --no-hostname'
 
 launch() {
     "$@" &>/dev/null & disown
