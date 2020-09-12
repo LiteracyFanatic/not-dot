@@ -114,7 +114,7 @@ assign [class="^Steam$"] $ws5
 for_window [class="Slay the Spire"] floating disable, fullscreen enable, move to workspace $ws5
 for_window [class="CorpseParty.x86"] floating disable, fullscreen enable, move to workspace $ws5
 
-exec i3-polybar
+exec polybar -r main
 exec compton
 exec lxqt-policykit-agent
 exec copyq
