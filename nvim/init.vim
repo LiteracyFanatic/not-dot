@@ -85,6 +85,7 @@ let g:ctrlp_open_multiple_files = 'i'
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_working_path_mode = 'wra'
 
-let g:ale_fixers = { 'sh': ['shfmt'] }
+let g:ale_fixers = { 'sh': ['shfmt -i 4 -sr'] }
+let g:ale_completion_enabled = 1
 
 colorscheme seoul256
