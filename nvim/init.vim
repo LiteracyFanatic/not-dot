@@ -64,6 +64,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'mboughaba/i3config.vim'
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
+Plug 'wakatime/vim-wakatime'
 call plug#end()
 
 autocmd! User GoyoEnter Limelight
