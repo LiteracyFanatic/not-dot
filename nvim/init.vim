@@ -61,6 +61,7 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
+Plug 'mboughaba/i3config.vim'
 call plug#end()
 
 autocmd! User GoyoEnter Limelight
