@@ -1,5 +1,5 @@
 c.content.notifications = False
-c.editor.command = ['st', 'nvim', '{file}']
+c.editor.command = ['xfce4-terminal', '-x', 'nvim', '{file}']
 c.scrolling.bar = 'always'
 c.content.register_protocol_handler = False
 c.url.default_page = 'https://www.google.com/'
