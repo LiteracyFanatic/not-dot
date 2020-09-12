@@ -18,6 +18,7 @@ octave/qt-settings
 pulse/
 qutebrowser/*
 !qutebrowser/config.py
+!qutebrowser/custom.css
 ranger/plugins/__init__.py
 ssh/*
 !ssh/ssh

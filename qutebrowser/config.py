@@ -22,3 +22,4 @@ c.tabs.last_close = 'close'
 c.tabs.mousewheel_switching = False
 c.downloads.position = 'bottom'
 c.aliases = { "readability": "spawn --userscript readability" }
+c.content.user_stylesheets = ['custom.css']
