@@ -12,6 +12,7 @@ c.url.searchengines = {
 c.url.start_pages = 'https://www.google.com/'
 c.fonts.completion.category = 'bold 16pt monospace'
 c.fonts.web.size.minimum = 14
+c.spellcheck.languages = ['en-US']
 config.bind(',n', 'spawn -v nh {url}')
 c.auto_save.session = True
 c.input.partial_timeout = 10000
