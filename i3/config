@@ -115,7 +115,7 @@ for_window [class="Slay the Spire"] floating disable, fullscreen enable, move to
 for_window [class="CorpseParty.x86"] floating disable, fullscreen enable, move to workspace $ws5
 
 exec polybar -r main
-exec compton
+exec picom --experimental-backends
 exec lxqt-policykit-agent
 exec copyq
 
