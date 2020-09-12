@@ -7,6 +7,8 @@ augroup my_filetypes
     autocmd FileType markdown setlocal textwidth=80 formatoptions+=a spell 
 augroup END
 
+autocmd FileType gitcommit setlocal spell
+
 set shortmess+=I
 set mouse=a
 set clipboard=unnamedplus
