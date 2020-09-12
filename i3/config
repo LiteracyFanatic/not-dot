@@ -118,6 +118,7 @@ exec polybar -r main
 exec picom --experimental-backends
 exec lxqt-policykit-agent
 exec copyq
+exec crow
 
 exec "$XDG_CONFIG_HOME/i3/layout"
 
