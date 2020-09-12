@@ -1,0 +1,5 @@
+configuration {
+	terminal: "xfce4-terminal";
+	run-shell-command: "{terminal} -x {cmd}";
+	theme: "~/.cache/wal/colors-rofi-light.rasi";
+}
