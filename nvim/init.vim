@@ -62,6 +62,7 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'do': 'bash install.sh',
     \ }
 Plug 'mboughaba/i3config.vim'
+Plug 'tpope/vim-commentary'
 call plug#end()
 
 autocmd! User GoyoEnter Limelight
