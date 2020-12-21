@@ -1,12 +1,14 @@
 ncmpcpp_directory = ~/.local/share/ncmpcpp
 lyrics_directory = ~/.local/share/ncmpcpp/lyrics
 
-visualizer_fifo_path = /tmp/mpd_for_ncmpcpp.fifo
+visualizer_data_source = /tmp/mpd_for_ncmpcpp.fifo
 visualizer_output_name = mpd_for_ncmpcpp_fifo
 visualizer_in_stereo = yes
-visualizer_sync_interval = 30
 visualizer_type = spectrum
 visualizer_look = +|
+# Causes artifacts on transparent terminals
+visualizer_spectrum_smooth_look = no
+visualizer_autoscale = yes
 
 enable_window_title = yes
 mouse_list_scroll_whole_page = no
