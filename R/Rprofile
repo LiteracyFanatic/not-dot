@@ -1,5 +1,5 @@
 .Last <- function() {
-	if (interactive()) {
-		savehistory(Sys.getenv("R_HISTFILE"))
-	}
+    if (interactive() & !nzchar(Sys.getenv("RADIAN_VERSION"))) {
+        savehistory(Sys.getenv("R_HISTFILE"))
+    }
 }
