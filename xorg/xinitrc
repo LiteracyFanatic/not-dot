@@ -2,7 +2,7 @@ systemctl --user import-environment DISPLAY XAUTHORITY XDG_DATA_HOME DOTNET_ROOT
 xrandr --output eDP1 --scale 0.5x0.5
 wal -R
 
-fcitx &
+fcitx5 &
 
 setxkbmap -option caps:none
 numlockx on && xmodmap -e 'keycode 77 = NoSymbol Num_Lock'
