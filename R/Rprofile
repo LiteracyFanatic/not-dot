@@ -3,3 +3,5 @@
         savehistory(Sys.getenv("R_HISTFILE"))
     }
 }
+
+options(repos = c(cran = "https://cloud.r-project.org/"))
