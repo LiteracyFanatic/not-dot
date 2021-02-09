@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 [[ $- != *i* ]] && return
 
 . "$HOME/.config/xdg-compliance"
