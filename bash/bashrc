@@ -11,6 +11,10 @@ HISTFILESIZE=10000
 HISTCONTROL=ignoreboth
 PROMPT_COMMAND='history -a'
 
+if [[ -r "/usr/share/pureline/pureline" ]] && [[ "$TERM" != "linux" ]]; then
+    . /usr/share/pureline/pureline "$XDG_CONFIG_HOME/pureline/pureline.conf"
+fi
+
 path() {
     tr ':' '\n' <<< "$PATH"
 }
