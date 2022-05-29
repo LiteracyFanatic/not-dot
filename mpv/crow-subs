@@ -1,0 +1,4 @@
+#!/bin/bash
+xclip -selection primary -in <<< "$1"
+gdbus call --session --dest io.crow_translate.CrowTranslate --object-path /io/crow_translate/CrowTranslate/MainWindow --method io.crow_translate.CrowTranslate.MainWindow.translateSelection
+gdbus call --session --dest io.crow_translate.CrowTranslate --object-path /io/crow_translate/CrowTranslate/MainWindow --method io.crow_translate.CrowTranslate.MainWindow.open

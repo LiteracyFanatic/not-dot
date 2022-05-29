@@ -1,0 +1,1 @@
+/home/jordan/src/perogiue-mpv-scripts/subs_to_clipboard.lua
