@@ -14,7 +14,8 @@ mpv/watch_later/
 mssqlcli/*
 !mssqlcli/config
 NuGet/
-octave/qt-settings
+octave/*
+!octave/octaverc
 pulse/
 qutebrowser/*
 !qutebrowser/config.py
@@ -32,3 +33,22 @@ coc/
 discord/
 GIMP/
 Postman/
+Bitwarden/
+Bitwarden CLI/
+wireshark/
+stripe/
+linode-cli
+gh/
+ranger/plugins/__pycache__/
+Trolltech.conf
+blugon/*
+!blugon/config
+!blugon/gamma
+d-feet/
+fcitx5/conf/cached_layouts/
+kcharselectrc
+libaccounts-glib/
+mozc/
+simple-scan/
+sqlitebrowser/
+teamviewer/
