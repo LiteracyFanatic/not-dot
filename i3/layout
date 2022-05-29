@@ -3,14 +3,20 @@ i3-msg "workspace 1: web; append_layout $XDG_CONFIG_HOME/i3/ws1.json"
 i3-msg "workspace 2: terminal; append_layout $XDG_CONFIG_HOME/i3/ws2.json"
 i3-msg "workspace 3: code; append_layout $XDG_CONFIG_HOME/i3/ws3.json"
 i3-msg "workspace 4: music; append_layout $XDG_CONFIG_HOME/i3/ws4.json"
+i3-msg "workspace 5: games; append_layout $XDG_CONFIG_HOME/i3/ws5.json"
+i3-msg "workspace 6: chat; append_layout $XDG_CONFIG_HOME/i3/ws6.json"
 i3-msg "workspace 1: web"
 
-qutebrowser & disown
+manga read --no-open --port 9999 & disown
+nm-online && google-chrome-stable & disown
+# Weird hack so terminal doesn't close when quitting vi
+xfce4-terminal --title vi -e 'bash -c "vi; bash"' & disown
 xfce4-terminal --title terminal & disown
 xfce4-terminal --title terminal & disown
-xfce4-terminal --title terminal & disown
-code --extensions-dir "$XDG_DATA_HOME/vscode/extensions" & disown
-glava & disown
+code & disown
 xfce4-terminal --title ncmpcpp -x ncmpcpp & disown
 xfce4-terminal --title tty-clock -x tty-clock -ct -f '%a %b %d' & disown
 xfce4-terminal --title htop -x htop --delay 50 & disown
+nm-online && steam & disown
+discord & disown
+nm-online && check-speed & disown

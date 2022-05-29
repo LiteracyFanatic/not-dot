@@ -4,7 +4,8 @@
         {
             "swallows": [
                 {
-                    "class": "^Google-chrome$"
+                    "class": "^Steam$",
+		    "title": "^Steam$"
                 }
             ]
         }

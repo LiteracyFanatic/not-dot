@@ -4,7 +4,7 @@
         {
             "swallows": [
                 {
-                    "class": "^Google-chrome$"
+                    "class": "^discord$"
                 }
             ]
         }

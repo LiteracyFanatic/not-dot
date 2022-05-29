@@ -1,51 +1,37 @@
 {
-    "layout": "splitv",
+    "layout": "splith",
     "nodes": [
         {
-            "name": "GLava",
-            "percent": 0.3,
-            "swallows": [
-                {
-                    "class": "^GLava$"
-                }
-            ]
-        },
-        {
-            "percent": 0.7,
+            "layout": "splitv",
+            "percent": 0.5,
             "nodes": [
                 {
-                    "layout": "splitv",
                     "percent": 0.5,
-                    "nodes": [
+                    "swallows": [
                         {
-                            "percent": 0.5,
-                            "swallows": [
-                                {
-                                    "title": "^ncmpcpp$"
-                                }
-                            ]
-                        },
-                        {
-                            "percent": 0.5,
-                            "swallows": [
-                                {
-                                    "title": "^tty-clock$"
-                                }
-                            ]
+                            "title": "^ncmpcpp$"
                         }
                     ]
                 },
                 {
-                    "layout": "splitv",
                     "percent": 0.5,
-                    "nodes": [
+                    "swallows": [
                         {
-                            "percent": 1,
-                            "swallows": [
-                                {
-                                    "title": "^htop$"
-                                }
-                            ]
+                            "title": "^tty-clock$"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "layout": "splitv",
+            "percent": 0.5,
+            "nodes": [
+                {
+                    "percent": 1,
+                    "swallows": [
+                        {
+                            "title": "^htop$"
                         }
                     ]
                 }

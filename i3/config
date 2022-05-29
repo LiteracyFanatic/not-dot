@@ -8,11 +8,11 @@ bindsym $mod+Return exec xfce4-terminal
 
 bindsym $mod+Shift+q kill
 
-exec quake-terminal --launch
-bindsym $mod+x exec quake-terminal --toggle
+bindsym $mod+x exec xfce4-terminal --drop-down, [window_role="xfce4-terminal-dropdown"] move window to workspace current
+for_window [window_role="xfce4-terminal-dropdown"] floating enable, fullscreen disable, sticky disable
 
-bindsym Print exec maim --hidecursor "$HOME/pictures/screenshots/$(date +%s).png";
-bindsym $mod+Print exec maim --hidecursor --select "$HOME/pictures/screenshots/$(date +%s).png"
+bindsym Print exec screenshot;
+bindsym $mod+Print exec maim --hidecursor --select "$HOME/pictures/screenshots/$(date --iso-8601=seconds).png"
 
 bindsym $mod+r exec "rofi -combi-modi drun,run -show combi -modi combi -show-icons -drun-show-actions"
 
@@ -26,15 +26,15 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+Left move left 5 ppt
+bindsym $mod+Shift+Down move down 5 ppt
+bindsym $mod+Shift+Up move up 5 ppt
+bindsym $mod+Shift+Right move right 5 ppt
 
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+Shift+h move left 5 ppt
+bindsym $mod+Shift+j move down 5 ppt
+bindsym $mod+Shift+k move up 5 ppt
+bindsym $mod+Shift+l move right 5 ppt
 
 bindsym $mod+backslash split h
 bindsym $mod+Shift+bar split v
@@ -46,6 +46,8 @@ bindsym $mod+w layout toggle split
 
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
+bindsym $mod+c floating enable, resize set 50 ppt 50 ppt, move position center
+bindsym $mod+p exec picture-in-picture
 
 bindsym $mod+a focus parent
 bindsym $mod+Shift+a focus child
@@ -86,10 +88,10 @@ bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
-bindsym $mod+minus resize shrink width 10 px or 10 ppt
-bindsym $mod+plus resize grow width 10 px or 10 ppt
-bindsym $mod+Shift+minus resize shrink height 10 px or 10 ppt
-bindsym $mod+Shift+plus resize grow height 10 px or 10 ppt
+bindsym $mod+minus resize shrink width 100 px or 10 ppt
+bindsym $mod+plus resize grow width 100 px or 10 ppt
+bindsym $mod+Shift+minus resize shrink height 100 px or 10 ppt
+bindsym $mod+Shift+plus resize grow height 100 px or 10 ppt
 
 bindsym $mod+Shift+v exec copyq toggle
 
@@ -103,8 +105,12 @@ bindsym XF86AudioPlay exec mpc toggle
 bindsym $mod+F10 exec mpc-set-host
 bindsym XF86AudioNext exec mpc next
 
+bindsym $mod+Escape exec dunstctl close
+bindsym $mod+grave exec dunstctl history-pop
+
 default_border pixel 5
 default_floating_border pixel 5
+for_window [all] border pixel 5
 
 gaps inner 10
 
@@ -113,12 +119,37 @@ workspace_auto_back_and_forth yes
 assign [class="^Steam$"] $ws5
 for_window [class="Slay the Spire"] floating disable, fullscreen enable, move to workspace $ws5
 for_window [class="CorpseParty.x86"] floating disable, fullscreen enable, move to workspace $ws5
+for_window [class="steam_app_1217060"] floating disable, fullscreen enable, move to workspace $ws5
+for_window [class="Crow Translate"] floating enable
+for_window [class="cantata"] floating enable
+for_window [class="copyq"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [class="Nemo"] floating enable
+for_window [class="Qalculate-gtk"] floating enable
+for_window [class="qBittorrent"] floating enable
+for_window [class="Tagaini Jisho"] floating enable
+for_window [class="qt5ct"] floating enable
+for_window [class="fcitx5-config-qt"] floating enable
+for_window [instance="Todo"] floating enable
+for_window [title="Adblock Plus - Google Chrome"] floating enable
+
+# Steam is buggy, so use for_window instead of assign
+# assign [class="Steam" title="Friends List"] $ws6
+for_window [class="Steam" title="Friends List"] move to workspace $ws6
+assign [class="^discord$"] $ws6
+
+for_window [class="mozc_tool" title="Note"] kill
+for_window [class="matplotlib"] floating enable
+
+for_window [class="zoom" title="^(?!Zoom Cloud Meetings$)"] border none
 
 exec polybar -r main
 exec picom --experimental-backends
 exec lxqt-policykit-agent
 exec copyq
 exec crow
+exec cantata
+exec qbittorrent
 
 exec "$XDG_CONFIG_HOME/i3/layout"
 
@@ -131,3 +162,5 @@ client.focused_inactive #333333 #222222 #888888 #111111   #000000
 client.unfocused        #333333 #222222 #888888 #111111   #000000
 client.urgent           #333333 #222222 #888888 #292d2e   #222222
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+for_window [all] title_window_icon padding 5px

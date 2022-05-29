@@ -5,7 +5,7 @@
             "percent": 0.6,
             "swallows": [
                 {
-                    "title": "^terminal$"
+                    "title": "^vi$"
                 }
             ]
         },
