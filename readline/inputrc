@@ -4,10 +4,12 @@ $include /etc/inputrc
 "\e[B": history-search-forward
 "\t": menu-complete
 "\e[Z": menu-complete-backward
-"\C-h": backward-kill-word
-"\e[3;5~": kill-word
+"\C-h": shell-backward-kill-word
+"\e[3;5~": shell-kill-word
 "\C-k": kill-whole-line
 "\C- ": possible-completions
+"\e[1;5D": shell-backward-word
+"\e[1;5C": shell-forward-word
 
 set colored-stats On
 set completion-ignore-case On
