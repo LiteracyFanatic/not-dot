@@ -1,5 +1,10 @@
 configuration {
-	terminal: "xfce4-terminal";
-	run-shell-command: "{terminal} -x {cmd}";
-	theme: "~/.cache/wal/colors-rofi-light.rasi";
+    terminal: "xfce4-terminal";
+    run-shell-command: "{terminal} -x {cmd}";
+    icon-theme: "Papirus";
+    show-icons: true;
+    // Automatically detect DPI
+    dpi: 0;
 }
+
+@theme "/home/jordan/.config/rofi/theme.rasi"
