@@ -1,0 +1,41 @@
+#!/bin/bash
+usage() {
+    echo "tesseract-profile <--horizontal | --vertical>"
+}
+
+case "$1" in
+    --horizontal)
+        params="{
+'preserve_interword_spaces': <'1'>,
+'paragraph_text_based': <'0'>,
+'textord_old_baselines': <'1'>,
+'lstm_use_matrix': <'0'>,
+'tessedit_pageseg_mode': <'6'>,
+'tessedit_write_images': <'1'>,
+'load_system_dawg': <'1'>,
+'load_freq_dawg': <'1'>
+}"
+        ;;
+    --vertical)
+        params="{
+'preserve_interword_spaces': <'1'>,
+'paragraph_text_based': <'0'>,
+'textord_old_baselines': <'1'>,
+'lstm_use_matrix': <'0'>,
+'tessedit_pageseg_mode': <'5'>,
+'tessedit_write_images': <'1'>,
+'load_system_dawg': <'1'>,
+'load_freq_dawg': <'1'>
+}"
+        ;;
+    *)
+        usage 1>&2
+        exit 1
+esac
+
+gdbus call --session \
+    -d io.crow_translate.CrowTranslate \
+    -o /io/crow_translate/CrowTranslate/Ocr \
+    -m io.crow_translate.CrowTranslate.Ocr.applyParameters \
+    "$params" \
+    true

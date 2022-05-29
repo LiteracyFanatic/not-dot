@@ -1,0 +1,8 @@
+preserve_interword_spaces 1
+paragraph_text_based 0
+textord_old_baselines 1
+lstm_use_matrix 0
+tessedit_pageseg_mode 6
+tessedit_write_images 1
+load_system_dawg 1
+load_freq_dawg 1
