@@ -1,0 +1,130 @@
+[org/gtk/settings/file-chooser]
+window-position=(391, 165)
+window-size=(1127, 768)
+date-format='regular'
+location-mode='path-bar'
+show-hidden=true
+show-size-column=true
+show-type-column=true
+sidebar-width=209
+sort-column='name'
+sort-directories-first=true
+sort-order='ascending'
+type-format='category'
+startup-mode='cwd'
+
+[org/gnome/meld/window-state]
+width=1890
+height=1009
+is-fullscreen=false
+
+[org/gnome/easytag]
+default-path=b'/home/jordan/music'
+sort-mode='ascending-genre'
+process-uppercase-all=false
+process-remove-spaces=false
+scan-mode='fill-tag'
+rename-file-default-mask='%t'
+scan-legend-show=true
+scan-mask-editor-show=false
+id3v2-unicode-charset='UTF-16'
+preferences-page=4
+scan-tag-default-mask='%t'
+
+[org/nemo/window-state]
+sidebar-bookmark-breakpoint=0
+start-with-sidebar=true
+geometry='950x530+480+284'
+maximized=false
+side-pane-view='places'
+
+[org/nemo/preferences]
+show-hidden-files=true
+show-location-entry=true
+thumbnail-limit=10485760
+
+[org/gnome/desktop/interface]
+gtk-im-module='ibus'
+show-battery-percentage=true
+clock-show-date=true
+icon-theme='Adwaita'
+cursor-theme='Adwaita'
+gtk-theme='Artwiz-boxed'
+enable-animations=true
+
+[org/x/apps/favorites]
+list=[]
+
+[org/nemo/plugins]
+disabled-actions=[]
+
+[org/cinnamon/desktop/applications/terminal]
+exec='xfce4-terminal'
+
+[org/nemo/icon-view]
+captions=['none', 'size', 'date_modified']
+
+[org/blueman/plugins/powermanager]
+auto-power-on=false
+
+[org/blueman/general]
+window-properties=[1890, 1009, 15, 56]
+services-last-item=0
+
+[org/gnome/meld]
+wrap-mode='none'
+highlight-syntax=true
+show-line-numbers=true
+indent-width=8
+insert-spaces-instead-of-tabs=false
+vc-status-filters=['flatten', 'modified']
+
+[org/gtk/settings/color-chooser]
+selected-color=(true, 0.66666666666666663, 0.75294117647058822, 1.0, 1.0)
+custom-colors=[(0.66666666666666663, 0.75294117647058822, 1.0, 1.0), (0.61568627450980395, 0.49411764705882355, 1.0, 1.0)]
+
+[system/proxy/http]
+host=''
+port=8080
+
+[system/proxy/https]
+host=''
+port=0
+
+[system/proxy/ftp]
+host=''
+port=0
+
+[system/proxy/socks]
+host=''
+port=0
+
+[system/proxy]
+mode='none'
+autoconfig-url=''
+ignore-hosts=['localhost', '127.0.0.0/8', '::1']
+
+[org/gnome/simple-scan]
+document-type='photo'
+jpeg-quality=100
+save-directory='file:///home/jordan/documents/'
+save-format='application/pdf'
+postproc-enabled=false
+postproc-keep-original=false
+
+[org/blueman/network]
+nap-enable=false
+
+[org/gtk/gtk4/settings/color-chooser]
+selected-color=(true, 1.0, 1.0, 1.0, 1.0)
+
+[org/gtk/gtk4/settings/file-chooser]
+startup-mode='cwd'
+window-position=(0, 0)
+
+[org/gnome/gimagereader]
+highlightmode='plain text'
+language='jpn_vert:ja'
+scandev=0
+wingeom=[12, 58, 1886, 937]
+replacelist=''
