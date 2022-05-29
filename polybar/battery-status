@@ -35,7 +35,11 @@ battery_print() {
         battery_max=$(cat "$path_battery/charge_full")
     fi
 
-    battery_percent=$(("$battery_level * 100 / $battery_max"))
+    if [ "$battery_max" -eq 0 ]; then
+        battery_percent=0
+    else
+        battery_percent=$(("$battery_level * 100 / $battery_max"))
+    fi
 
     if [ "$ac" -eq 1 ]; then
         msg=" ( $(remaining_time))"

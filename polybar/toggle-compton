@@ -1,8 +1,0 @@
-#!/bin/sh
-if [ "$(pidof compton)" ]; then
-    killall compton
-    echo "%{F#888}%{F-}"
-else
-    compton >/dev/null 2>&1 &
-    echo ""
-fi
