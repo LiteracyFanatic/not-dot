@@ -1,13 +1,38 @@
-systemctl --user import-environment DISPLAY XAUTHORITY XDG_DATA_HOME DOTNET_ROOT
-xrandr --output eDP1 --scale 0.5x0.5
+#!/bin/bash
+if [[ -d /etc/X11/xinit/xinitrc.d ]]; then
+    for f in /etc/X11/xinit/xinitrc.d/*.sh; do
+        if [[ -r "$f" ]]; then
+            . "$f"
+        fi
+    done
+    unset f
+fi
+
+# /etc/X11/xinit/xinitrc.d/50-systemd-user.sh imports DISPLAY and XAUTHORITY as
+# well but this makes sure they're defined on systems where that script isn't
+# present.
+systemctl --user import-environment DISPLAY XAUTHORITY XDG_DATA_HOME
+dbus-update-activation-environment --all
+
+xrandr --output eDP1 --dpi 192
 wal -R
+
+# xautolock -time 10 -detectsleep -locker 'xlock -nolock' &
+xscreensaver -nosplash &
+xautolock -time 10 -detectsleep -locker 'xscreensaver-command --activate' &
+
+xob-backlight &
 
 fcitx5 &
 
-setxkbmap -option caps:none
-numlockx on && xmodmap -e 'keycode 77 = NoSymbol Num_Lock'
+dunst &
 
+# Order here matters because setxkbmap resets xmodmap settings
+setxkbmap -option caps:none
 # Enable zapping (C-A-<Bksp> kills X)
 setxkbmap -option terminate:ctrl_alt_bksp
+numlockx on && xmodmap -e 'keycode 77 = NoSymbol Num_Lock'
+
+battery-monitor &
 
 exec i3
