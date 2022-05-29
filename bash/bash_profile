@@ -1,15 +1,23 @@
+# shellcheck shell=bash
 . "$HOME/.config/xdg-compliance"
 
-[[ -r "$XDG_CONFIG_HOME/bash/bashrc" ]] && . "$XDG_CONFIG_HOME/bash/bashrc"
+if [[ -r "$XDG_CONFIG_HOME/bash/bashrc" ]]; then
+    . "$XDG_CONFIG_HOME/bash/bashrc"
+fi
+
+shopt -s histappend
+HISTSIZE=10000
+HISTFILESIZE=10000
+HISTCONTROL=ignoreboth
 
 XINITRC="$XDG_CONFIG_HOME/xorg/xinitrc"
 LOG="$XDG_DATA_HOME/xorg/xsession-errors"
 
-if [ "$(tty)" = "/dev/tty1" ]; then
+if [[ "$(tty)" = /dev/tty1 ]]; then
     export XDG_SESSION_TYPE=x11
     export GDK_BACKEND=x11
     startx "$XINITRC" -- -keeptty 2>>"$LOG"
-elif [ "$(tty)" = "/dev/tty2" ]; then
+elif [[ "$(tty)" = /dev/tty2 ]]; then
     export XDG_SESSION_TYPE=wayland
     export GDK_BACKEND=wayland
     sway

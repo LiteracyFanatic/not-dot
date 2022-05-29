@@ -9,7 +9,14 @@ shopt -s histappend
 HISTSIZE=10000
 HISTFILESIZE=10000
 HISTCONTROL=ignoreboth
-PROMPT_COMMAND='history -a'
+
+catWal() {
+    if [[ -r "$XDG_CACHE_HOME/wal/sequences" ]]; then
+        cat "$XDG_CACHE_HOME/wal/sequences"
+    fi
+}
+
+PROMPT_COMMAND="history -a; history -c; history -r; catWal"
 
 if [[ -r "/usr/share/pureline/pureline" ]] && [[ "$TERM" != "linux" ]]; then
     . /usr/share/pureline/pureline "$XDG_CONFIG_HOME/pureline/pureline.conf"
@@ -27,19 +34,15 @@ prependPath "$HOME/.local/bin"
 prependPath "$HOME/bin"
 prependPath "$HOME/.dotnet/tools"
 
-if [[ -r "/usr/share/pureline/pureline" ]] && [[ "$TERM" != "linux" ]]; then
-    . /usr/share/pureline/pureline
-    . "$XDG_CONFIG_HOME/pureline/pureline.conf"
-fi
-
 export EDITOR=nvim
 export VISUAL=nvim
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export DOTNET_NEW_PREFERRED_LANG='F#'
+export MSSQL_CLI_TELEMETRY_OPTOUT=True
 export LESS=FRSMi
 export SYSTEMD_LESS="$LESS"
+export DELTA_PAGER="less -$LESS"
 export _JAVA_AWT_WM_NONREPARENTING=1
-export RIDER_JDK=/usr/lib/jvm/java-11-openjdk
 export GSETTINGS_BACKEND=keyfile
 
 alias ls='ls -v --group-directories-first --classify --color=auto'
@@ -54,24 +57,18 @@ alias qmv='qmv --format destination-only'
 alias weather='curl http://wttr.in/'
 alias journalctl='journalctl --no-hostname'
 alias R='R --no-save'
+alias nyan='curl https://poptart.spinda.net'
 
 launch() {
     "$@" &>/dev/null & disown
 }
 complete -A command launch
 
-schedule() {
-    systemd-run --user --timer-property 'AccuracySec=1' --on-active "$1" "${@:2}"
-}
-
-alarm() {
-    schedule "$1" notify-send --urgency critical "$2"
-}
-
 dict() {
     command dict "$@" | less
 }
 
+mkdir -p "$XDG_DATA_HOME/bash"
 export HISTFILE="$XDG_DATA_HOME/bash/history"
 
 export LESSKEY="$XDG_CONFIG_HOME/less/lesskey"
@@ -85,8 +82,6 @@ export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 export ICEAUTHORITY="$XDG_CACHE_HOME/ICEauthority"
 
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
-
-#alias code='code --extensions-dir "$XDG_DATA_HOME/vscode/extensions"'
 
 export WAKATIME_HOME="$XDG_CONFIG_HOME/wakatime"
 
@@ -125,9 +120,19 @@ export VAGRANT_ALIAS_FILE="$XDG_DATA_HOME/vagrant/aliases"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 
+export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite_history"
+
+export AZURE_CONFIG_DIR="$XDG_DATA_HOME/azure"
+
 export GTK_IM_MODULE=fcitx5
 export XMODIFIERS=@im=fcitx5
 export QT_IM_MODULE=fcitx5
+
+export QT_QPA_PLATFORMTHEME=qt5ct
+
+export TSC_WATCHFILE=UseFsEventsWithFallbackDynamicPolling
+
+export ANSIBLE_NOCOWS=1
 
 if hash ranger 2>/dev/null; then
     if [[ -r "$XDG_CONFIG_HOME/ranger/plugins/bash_automatic_cd.sh" ]]; then
@@ -136,3 +141,19 @@ if hash ranger 2>/dev/null; then
 fi
 
 alias ssh-copy-id='ssh-copy-id -i "$XDG_CONFIG_HOME/ssh/id_rsa.pub"'
+
+export GDK_SCALE=2
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+export AVALONIA_SCREEN_SCALE_FACTORS=eDP1=2
+
+# Make fzf include dotfiles
+export FZF_DEFAULT_COMMAND='fd -H --type f'
+export FZF_DEFAULT_OPTS='--reverse'
+
+if [[ -r "$XDG_CONFIG_HOME/bash/dotnet-suggest-shim" ]]; then
+    . "$XDG_CONFIG_HOME/bash/dotnet-suggest-shim"
+fi
+
+if [[ -r "$XDG_CONFIG_HOME/bash/dotnet-complete-shim" ]]; then
+    . "$XDG_CONFIG_HOME/bash/dotnet-complete-shim"
+fi
