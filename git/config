@@ -5,3 +5,40 @@
 	enabled = true
 [push]
 	followTags = true
+[commit]
+	verbose = true
+[status]
+	short = true
+	branch = true
+[init]
+	defaultBranch = master
+[merge]
+	tool = vscode
+	conflictstyle = zdiff3
+[mergetool "vscode"]
+	cmd = code --wait $MERGED
+[diff]
+	tool = vscode
+	colorMoved = default
+[difftool "vscode"]
+	cmd = code --wait --diff $LOCAL $REMOTE
+[credential]
+	helper = cache
+[core]
+	pager = delta
+[delta]
+	navigate = true
+[interactive]
+	diffFilter = delta --color-only
+[cola]
+	spellcheck = false
+	tabwidth = 4
+	blameviewer = git gui blame
+	expandtab = true
+	theme = flat-dark-grey
+	icontheme = dark
+[gui]
+	editor = nvim
+	historybrowser = gitk
+[rebase]
+	autoStash = true
