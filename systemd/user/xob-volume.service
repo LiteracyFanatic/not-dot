@@ -1,0 +1,12 @@
+[Unit]
+Description=xob volume
+BindsTo=graphical-session.target
+After=pulseaudio.service
+
+[Service]
+Type=simple
+ExecStart=/bin/bash -c '"$HOME/bin/pulse-volume-watcher.py" | /usr/bin/xob'
+Restart=always
+
+[Install]
+WantedBy=graphical-session.target
