@@ -7,6 +7,9 @@ thumbnail-size=256x256
 thumbnail-preload=30
 thumbnail-persistence=standard
 disable-backends=archive,archive_cbx,libav,poppler,spectre,wand
+scale-images-up=1
+scale-mode-screen-fraction=0.95
+box-colors=#332f4b:#9d7eff
 
 [keybindings]
 <Mouse-1> { goto_file_relative(1); }
@@ -18,3 +21,10 @@ j { goto_file_relative(1); }
 k { goto_file_relative(-1); }
 <Mouse-Scroll-1> { nop(); }
 <Mouse-Scroll-2> { nop(); }
+<Home> { goto_file_byindex(0); }
+<End> { goto_file_byindex(0); goto_file_relative(-1); }
+gg { goto_file_byindex(0); }
+G { goto_file_byindex(0); goto_file_relative(-1); }
+o { command(ocr $1); }
+yy { command(copyq copy $1); }
+d { command(show-image-metadata $1); }
