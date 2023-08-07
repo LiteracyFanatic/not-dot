@@ -18,9 +18,7 @@ catWal() {
 
 PROMPT_COMMAND="history -a; history -c; history -r; catWal"
 
-if [[ -r "/usr/share/pureline/pureline" ]] && [[ "$TERM" != "linux" ]]; then
-    . /usr/share/pureline/pureline "$XDG_CONFIG_HOME/pureline/pureline.conf"
-fi
+eval "$(oh-my-posh init bash --config "$HOME/.config/oh-my-posh/theme.omp.json")"
 
 path() {
     tr ':' '\n' <<< "$PATH"

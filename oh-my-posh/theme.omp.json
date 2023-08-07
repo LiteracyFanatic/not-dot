@@ -1,0 +1,148 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "shell",
+          "style": "diamond",
+          "background": "p:pink",
+          "foreground": "p:black",
+          "trailing_diamond": "<transparent>\ue0b1</>",
+          "properties": {
+            "mapped_shell_names": {
+              "bash": "\uebca",
+              "pwsh": "\udb82\ude0a"
+            }
+          }
+        },
+        {
+          "background": "p:pink",
+          "foreground": "p:black",
+          "properties": {
+            "time_format": "15:04"
+          },
+          "style": "diamond",
+          "trailing_diamond": "<transparent>\ue0b1</>",
+          "type": "time"
+        },
+        {
+          "background": "p:pink",
+          "foreground": "p:black",
+          "properties": {
+            "display_host": false
+          },
+          "style": "powerline",
+          "template": " {{ if .SSHSession }}\uf817 {{ end }}{{ .UserName }} ",
+          "type": "session"
+        },
+        {
+          "background": "p:lightBlue",
+          "foreground": "p:black",
+          "properties": {
+            "home_icon": "~",
+            "style": "full"
+          },
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "template": " {{ path .Path .Location }}",
+          "type": "path"
+        },
+        {
+          "background": "p:lightBlue",
+          "foreground": "p:black",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "template": "\u2601 {{ .Profile }}{{ if .Region }}@{{ .Region }}{{ end }}",
+          "properties": {
+            "display_default": false
+          },
+          "type": "aws"
+        },
+        {
+          "background": "p:darkBlue",
+          "foreground": "p:black",
+          "powerline_symbol": "\ue0b0",
+          "properties": {
+            "fetch_status": true,
+            "fetch_stash_count": true,
+            "fetch_worktree_count": true,
+            "branch_icon": " ",
+            "branch_identical_icon": ""
+          },
+          "template": " {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uF044({{ .Working.String }}){{ end }}{{ if .Staging.Changed }} \uF046({{ .Staging.String }}){{ end }}",
+          "style": "powerline",
+          "type": "git"
+        },
+        {
+          "background": "p:red",
+          "foreground": "p:white",
+          "powerline_symbol": "\ue0b0",
+          "properties": {
+            "root_icon": "\uf0ad"
+          },
+          "style": "powerline",
+          "template": " \uf0e7 ",
+          "type": "root"
+        },
+        {
+          "type": "executiontime",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "background": "p:purple",
+          "foreground": "p:black",
+          "template": " ⧗ {{.FormattedMs}} ",
+          "properties": {
+            "style": "austin",
+            "always_enabled": true
+          }
+        },
+        {
+          "background": "p:red",
+          "foreground": "p:white",
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "template": " ⚑ {{.Code}} ",
+          "type": "status"
+        },
+        {
+          "style": "plain",
+          "properties": {
+            "command": "tput init"
+          },
+          "type": "command"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "text",
+          "background": "p:green",
+          "foreground": "p:black",
+          "trailing_diamond": "\ue0b0",
+          "style": "diamond",
+          "template": " $ "
+        }
+      ],
+      "type": "prompt",
+      "newline": true
+    }
+  ],
+  "console_title_template": "{{ .PWD }}",
+  "final_space": true,
+  "palette": {
+    "black": "#262B44",
+    "white": "#E0DEF4",
+    "purple": "#9d7eff",
+    "lightBlue": "#aac0ff",
+    "darkBlue": "#9fb3ff",
+    "pink": "#d49bff",
+    "green": "#a5fff5",
+    "red": "#D81E5B"
+  },
+  "version": 2
+}
