@@ -116,7 +116,7 @@ gaps inner 10
 
 workspace_auto_back_and_forth yes
 
-assign [class="^Steam$"] $ws5
+assign [class="^steam$"] $ws5
 for_window [class="Slay the Spire"] floating disable, fullscreen enable, move to workspace $ws5
 for_window [class="CorpseParty.x86"] floating disable, fullscreen enable, move to workspace $ws5
 for_window [class="steam_app_1217060"] floating disable, fullscreen enable, move to workspace $ws5

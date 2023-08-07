@@ -4,8 +4,8 @@
         {
             "swallows": [
                 {
-                    "class": "^Steam$",
-		    "title": "^Steam$"
+                    "class": "^steam$",
+        		    "title": "^Steam$"
                 }
             ]
         }
