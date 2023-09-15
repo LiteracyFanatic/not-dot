@@ -155,7 +155,7 @@ export AVALONIA_SCREEN_SCALE_FACTORS=eDP1=2
 export FZF_DEFAULT_COMMAND='fd -H --type f'
 export FZF_DEFAULT_OPTS='--reverse'
 
-if [[ -r "$XDG_CONFIG_HOME/bash/dotnet-suggest-shim" ]]; then
+if hash dotnet-suggest 2>/dev/null && [[ -r "$XDG_CONFIG_HOME/bash/dotnet-suggest-shim" ]]; then
     . "$XDG_CONFIG_HOME/bash/dotnet-suggest-shim"
 fi
 
