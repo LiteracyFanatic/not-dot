@@ -34,7 +34,7 @@
             "display_host": false
           },
           "style": "powerline",
-          "template": " {{ if .SSHSession }}\uf817 {{ end }}{{ .UserName }} ",
+          "template": " {{ if .SSHSession }}\udb82\udcc0 {{ end }}{{ .UserName }} ",
           "type": "session"
         },
         {
