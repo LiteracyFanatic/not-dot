@@ -9,6 +9,7 @@ shopt -s histappend
 HISTSIZE=100000
 HISTFILESIZE=100000
 HISTCONTROL=ignoreboth
+HISTTIMEFORMAT='%FT%T%z '
 
 catWal() {
     if [[ -r "$XDG_CACHE_HOME/wal/sequences" ]]; then
