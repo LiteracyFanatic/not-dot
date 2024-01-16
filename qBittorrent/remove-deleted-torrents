@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# watchedDir="$XDG_RUNTIME_DIR/gvfs/smb-share:server=nas,share=videos,user=jordan/"
+watchedDir="$HOME/videos"
+url='http://localhost:9997'
+
+# Function to handle the deletion event
+handleDeletion() {
+    local fileName="$1"
+
+    echo "File deleted: $fileName"
+
+    # Search for a matching torrent
+    local torrent_hash="$(qbt torrent list --url "$url" --format json | jq --arg fileName "$fileName" -r '.[] | select(.name == $fileName) | .hash')"
+
+    if [ ! -z "$torrent_hash" ]; then
+        echo "Deleting torrent with hash: $torrent_hash"
+        qbt torrent delete --url "$url" "$torrent_hash"
+    else
+        echo "No matching torrent found for $fileName"
+    fi
+}
+
+# Monitoring the directory for deletion
+inotifywait --quiet --monitor --event delete --format '%f' "$watchedDir" | while read fileName
+do
+    handleDeletion "$fileName"
+done
