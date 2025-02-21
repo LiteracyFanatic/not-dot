@@ -34,8 +34,8 @@ case "$1" in
 esac
 
 gdbus call --session \
-    -d io.crow_translate.CrowTranslate \
-    -o /io/crow_translate/CrowTranslate/Ocr \
-    -m io.crow_translate.CrowTranslate.Ocr.applyParameters \
+    -d org.kde.CrowTranslate \
+    -o /org/kde/CrowTranslate/Ocr \
+    -m org.kde.CrowTranslate.Ocr.applyParameters \
     "$params" \
     true
