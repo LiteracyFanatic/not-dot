@@ -1,6 +1,0 @@
-#!/bin/bash
-if [[ "$#" -eq 0 ]]; then
-    /usr/bin/yay --color=auto -Syu
-else
-    /usr/bin/yay --color=auto "$@"
-fi
